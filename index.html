@@ -1,1 +1,112 @@
+<!DOCTYPE html>  
+<html lang="en">  
+<head>  
+  <meta charset="UTF-8">  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+  <title>JAY Dwarkadhish - Fast Food Delivery</title>  
+  <style>  
+    body { font-family: Arial, sans-serif; margin: 0; padding: 0; background: #ffffff; }  
+    header { background: #e53935; color: white; padding: 20px; text-align: center; position: relative; }  
+    header .site-name { position: absolute; top: 5px; left: 10px; font-weight: bold; font-size: 14px; }  
+    h2 { margin-top: 30px; text-align: center; color: #e53935; }  
+    .menu { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 15px; padding: 20px; }  
+    .item { background: white; padding: 15px; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); text-align: center; border: 1px solid #f1f1f1; }  
+    .item h3 { margin: 10px 0 5px; color: #333; }  
+    .item p { margin: 5px 0; font-weight: bold; color: #e53935; }  
+    .order-btn { display: inline-block; margin-top: 10px; padding: 8px 12px; background: #c62828; color: white; border-radius: 5px; text-decoration: none; cursor: pointer; }  
+    form { display: none; padding: 20px; max-width: 400px; margin: auto; background: white; border-radius: 10px; box-shadow: 0 2px 5px rgba(0,0,0,0.1); }  
+    form input, form select { width: 100%; padding: 10px; margin: 8px 0; border: 1px solid #ccc; border-radius: 5px; }  
+    form button { background: #e53935; color: white; border: none; padding: 10px; border-radius: 5px; cursor: pointer; }  
+    footer { text-align: center; padding: 15px; background: #e53935; color: white; margin-top: 20px; }  
+    .help-btn { position: fixed; top: 50%; left: 0; transform: translateY(-50%); background: #4caf50; color: #fff; padding: 10px; border-radius: 0 8px 8px 0; text-decoration: none; font-weight: bold; z-index: 1000; }  
+    .qr-section { display: none; text-align: center; margin-top: 15px; }  
+    .qr-section img { width: 220px; margin: 10px auto; display: block; }  
+    .qr-section p { font-weight: bold; color: #c62828; }  
+  </style>  
+</head>  
+<body>  
+<header>  
+  <div class="site-name">SITE : BHAVESH</div>  
+  <h1>🍝 JAY Dwarkadhish</h1>  
+  <p>Maggi & Pasta - Fresh & Homemade</p>  
+</header>  
 
+<h2>Maggi Menu</h2>  
+<div class="menu">  
+  <div class="item"><h3>Masala Maggi</h3><p>₹60</p><a class="order-btn" onclick="order('Masala Maggi',60)">Order Now</a></div>  
+  <div class="item"><h3>Butter Maggi</h3><p>₹70</p><a class="order-btn" onclick="order('Butter Maggi',70)">Order Now</a></div>  
+  <div class="item"><h3>Cheese Maggi</h3><p>₹90</p><a class="order-btn" onclick="order('Cheese Maggi',90)">Order Now</a></div>  
+  <div class="item"><h3>Tadka Maggi</h3><p>₹70</p><a class="order-btn" onclick="order('Tadka Maggi',70)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Maggi</h3><p>₹80</p><a class="order-btn" onclick="order('Veg. Maggi',80)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Butter Maggi</h3><p>₹85</p><a class="order-btn" onclick="order('Veg. Butter Maggi',85)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Cheese Maggi</h3><p>₹120</p><a class="order-btn" onclick="order('Veg. Cheese Maggi',120)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Tadka Maggi</h3><p>₹100</p><a class="order-btn" onclick="order('Veg. Tadka Maggi',100)">Order Now</a></div>  
+</div>  
+
+<h2>Pasta Menu</h2>  
+<div class="menu">  
+  <div class="item"><h3>Masala Pasta</h3><p>₹70</p><a class="order-btn" onclick="order('Masala Pasta',70)">Order Now</a></div>  
+  <div class="item"><h3>Butter Pasta</h3><p>₹80</p><a class="order-btn" onclick="order('Butter Pasta',80)">Order Now</a></div>  
+  <div class="item"><h3>Cheese Pasta</h3><p>₹100</p><a class="order-btn" onclick="order('Cheese Pasta',100)">Order Now</a></div>  
+  <div class="item"><h3>Tadka Pasta</h3><p>₹90</p><a class="order-btn" onclick="order('Tadka Pasta',90)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Pasta</h3><p>₹95</p><a class="order-btn" onclick="order('Veg. Pasta',95)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Butter Pasta</h3><p>₹105</p><a class="order-btn" onclick="order('Veg. Butter Pasta',105)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Cheese Pasta</h3><p>₹130</p><a class="order-btn" onclick="order('Veg. Cheese Pasta',130)">Order Now</a></div>  
+  <div class="item"><h3>Veg. Tadka Pasta</h3><p>₹115</p><a class="order-btn" onclick="order('Veg. Tadka Pasta',115)">Order Now</a></div>  
+</div>  
+
+<form id="order-form">  
+  <input type="text" id="order-item" readonly>  
+  <input type="text" id="order-price" readonly>  
+  <input type="text" id="name" placeholder="Your Name" required>  
+  <input type="text" id="mobile" placeholder="Mobile Number" required>  
+  <input type="text" id="address" placeholder="Delivery Address" required>  
+  <select id="payment" onchange="toggleQR()">  
+    <option value="Cash on Delivery">Cash on Delivery</option>  
+    <option value="Online Payment">Online Payment</option>  
+  </select>  
+
+  <div class="qr-section" id="qr-section">  
+    <img src="https://i.postimg.cc/vZtqmNt6/IMG-20250819-WA0003.jpg" alt="QR Code">  
+    <p>📌 PLEASE MAKE PAYMENT AND SEND SCREENSHOT</p>  
+    <p>📌 पैसे QR CODE पर डाल कर हमें स्क्रीनशॉट भेजें निवेदन</p>  
+  </div>  
+
+  <button type="button" onclick="sendOrder()">Place Order</button>  
+</form>  
+
+<a href="https://wa.me/916354083909" target="_blank" class="help-btn">HELP</a>  
+
+<footer>  
+  📞 Call/WhatsApp: +91 83204 21679 | 🚚 Home Delivery Available  
+</footer>  
+
+<script>  
+let selectedItem = "";  
+let selectedPrice = "";  
+
+function order(item, price) {  
+  selectedItem = item;  
+  selectedPrice = price;  
+  document.getElementById('order-form').style.display = 'block';  
+  document.getElementById('order-item').value = item;  
+  document.getElementById('order-price').value = "₹" + price;  
+  window.scrollTo(0, document.getElementById('order-form').offsetTop);  
+}  
+
+function toggleQR() {  
+  const payment = document.getElementById('payment').value;  
+  document.getElementById('qr-section').style.display = (payment === "Online Payment") ? "block" : "none";  
+}  
+
+function sendOrder() {  
+  const name = document.getElementById('name').value;  
+  const mobile = document.getElementById('mobile').value;  
+  const address = document.getElementById('address').value;  
+  const payment = document.getElementById('payment').value;  
+  const msg = `New Order 📦%0AItem: ${selectedItem}%0APrice: ₹${selectedPrice}%0AName: ${name}%0AMobile: ${mobile}%0AAddress: ${address}%0APayment: ${payment}`;  
+  window.open(`https://wa.me/918320421679?text=${msg}`);  
+}  
+</script>  
+</body>  
+</html>
